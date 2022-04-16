@@ -1,0 +1,27 @@
+<launch>
+
+    <arg name="libpath" default="$(find rasm)/../../devel/lib/" />
+    <arg name="config" default="moonranger" />
+    <arg name="mode" default="pwire" />
+    <!-- allowed modes:
+        point         point cloud (see also pointsize) (default)
+        wire          wireframe
+        pwire         wireframe and point cloud
+        mesh          solid mesh
+        contour       contour map
+        pointSize     set the size of points in -point and -pwire
+                  (should be a function of viewing distance)
+        markTracks    the last dataset is vehicle tracks
+                  (drawn as two separate lines in pwire mode)
+        setCloudDraw  the last dataset is forced to the current draw mode
+
+    -->
+    
+    <!-- viewer -->
+    <node name="rasm_viewer" 
+        pkg="rasm" 
+        type="rasm_viewer_node" 
+        args="--tmapData --tmapPose --$(arg mode) --config $(find rasm)/config/$(arg config).config  --comms $(arg libpath)/libros_interface.so --white"
+        output="screen"/>
+
+</launch>

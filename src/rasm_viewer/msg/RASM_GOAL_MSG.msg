@@ -1,0 +1,6 @@
+float32 origin_x_meters
+float32 origin_y_meters
+float32 length_meters
+float32 width_meters
+float32 orientation_radians
+float64 timestamp

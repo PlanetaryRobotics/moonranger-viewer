@@ -1,0 +1,4 @@
+[submodule "libigl"]
+	path = src/rasm/external/libigl
+	url = git@github.com:libigl/libigl.git
+	branch = v2.3.0

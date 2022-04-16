@@ -1,0 +1,14 @@
+float32 x_meters
+float32 y_meters
+float32 z_meters
+float32 dx_meters_per_sec
+float32 dy_meters_per_sec
+float32 dz_meters_per_sec
+float32 roll_rad
+float32 pitch_rad
+float32 yaw_rad
+float32 droll_rad_per_sec
+float32 dpitch_rad_per_sec
+float32 dyaw_rad_per_sec
+float32[] covariance_matrix
+float64 timestamp

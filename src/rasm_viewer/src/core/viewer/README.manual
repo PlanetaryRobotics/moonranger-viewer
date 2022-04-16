@@ -1,0 +1,203 @@
+1. Command-line Parameters
+1.1 Camera
+1.2 Draw Modes
+1.3 Color
+1.4 Animation
+1.5 OpenGL
+1.6 Lighting
+1.7 Visibility
+1.8 WRL files
+1.9 Evaluation files
+1.10 Miscellaneous
+
+2. Interactive Key Bindings
+2.1 Mouse
+2.2 Camera
+2.3 Lighting
+2.4 Visibility
+2.5 Miscellaneous
+
+
+
+Section 1. Command-line Parameters
+
+Section 1.1 Camera
+
+The camera is initially focused on the mean of the datasets.
+The angles and distance specify the camera location from the focal point.
+  --camLoc X Y Z  sets the focal point
+  --camx X        sets only the x-component of the camera focal point
+  --camy Y        sets only the y-component of the camera focal point
+  --camz Z        sets only the z-component of the camera focal point
+  --camAz az      sets the camera azimuth (in degrees)
+  --camEl el      sets the camera elevation (in degrees)
+  --viewDist d    sets the camera viewing distance
+  --navCloud      sets the camera parameters for viewing a nav cloud
+
+
+Section 1.2 Draw Modes
+
+  --point         point cloud (see also pointsize) (default)
+  --wire          wireframe
+  --pwire         wireframe and point cloud
+  --mesh          solid mesh
+  --contour       contour map
+  --pointSize     set the size of points in -point and -pwire
+                  (should be a function of viewing distance)
+  --markTracks    the last dataset is vehicle tracks
+                  (drawn as two separate lines in pwire mode)
+  --setCloudDraw  the last dataset is forced to the current draw mode
+
+
+Section 1.3 Color
+
+Default is rainbow for datasets and goodness of evaluations
+The nth color you specify is applied to the nth dataset
+  --RGB r g b       set color of the next dataset (values 0-1)
+  --grey v          same as '--RGB v v v'
+  --HSV h s v       set color of the next dataset (values 0-1)
+  --hue h           same as '--HSV h 1 1'
+  --pathHSV h s v   set color of the next evaluation (values 0-1)
+  --white           set white background instead of black
+
+
+Section 1.4 Animation
+
+  --oneFrame file           renders a single frame and saves a ppm image
+  --numFrames N             renders N frames
+  --frameName S             sets frame name (default "frame.%04d")
+  --finalTarget x y z       sets the final camera target
+  --finalCamera az el dist  sets the final camera orientation
+
+
+Secion 1.5 OpenGL
+
+  --fog           enable fog (that matches the background)
+  --clip a b c d  adds a clipping plane aX+bY+cZ+d>0 (6 are allowed)
+  --scaleX X      sets the x-component scaling factor (default is 1.0)
+  --scaleY Y      sets the y-component scaling factor (default is 1.0)
+  --scaleZ Z      sets the z-component scaling factor (default is 1.0)
+
+
+Section 1.6 Lighting
+
+Initially there are 3 lights
+  -light          enable lighting (default)
+  -nolight        disable light (don't use with -mesh)
+  --lightON N     turns on light index N
+  --lightOFF N    turns off light index N
+  --lighting type N val  N is the light index, val is 4 floats, type is one of:
+                          pos - position, default is camera location
+                          ambient - ambient lighting
+                          diffuse - only valid if 4th value is 0
+                          specular - only valid if 4th value is 0
+                          attenuation - A + Bx + Cx^2, 4th is unused
+  --shadow X Y Z  render shadows from this point source
+
+
+Section 1.7 Visibility
+
+  --noAxes        suppresses axes at the origin and mean point
+  --hideCloud n   suppresses the nth dataset (0 indexed)
+  --hidePath n    suppresses the nth evaluation (0 indexed)
+  --hideWRL n     suppresses the nth wrl model (0 indexed)
+
+
+Section 1.8 WRL Files
+
+WRL files contain similar information as .smf files.  They also contain
+color information.  These can be exported from CAD models.
+
+  --wrlTrans N r p y x y z   transform wrl model N by r/p/y and x/y/z
+  --wrlTransR                as above, but angles in radians
+
+
+Section 1.9 Evaluation files
+
+These files have a .paths extension and show an A-star path.
+  --pathPoint     evalutions are rendered as points
+  --pathLines     evalutions are rendered as fading lines (default)
+  --pathSolid     evalutions are rendered as solid lines
+  --firstIsWorld  first dataset is considered to be the world model
+                  (paths are snapped in altitude to lay on this model)
+
+
+Section 1.10 Miscellaneous
+
+  -v              verbose output
+  --autoReload    automatically reloads updated datasets
+  --offscreen     when rendering a single frame, don't pop up a window
+  --widescreen    initialize window to 1920x1080 (instead of 640x480)
+      widescreen and oneFrame renders 4 quadrants that can be combined with:
+      convert \( $i.U?.ppm +append \) \( $i.L?.ppm +append \) -append $i.png
+
+
+Section 2. Interactive Key Bindings
+
+Section 2.1 Mouse
+
+left drag  - rotate by adjusting the camera azimuth and elevation
+right drag - zoom in/out, by adjusting the camera distance
+UP         - in the X-Y plane, move forward in the camera view
+DOWN       - in the X-Y plane, move backward in the camera view
+LEFT       - in the X-Y plane, move to the camera left 
+RIGHT      - in the X-Y plane, move to the camera right 
+PAGE_UP    - move up along the Z axis
+PAGE_DOWN  - move down along the Z axis
+
+
+Section 2.2 Camera
+
+ ,  - shrink field of view
+ .  - enlarge field of view
+ m  - print camera location, angle and distance
+
+
+Section 2.3 Lighting
+
+ L  - toggle lighting
+ K  - appends a new light source
+ l  - cycles current light source
+ k  - cycles current light parameter (position, attenuation...)
+ r  - increase parameter 0
+ f  - decrease parameter 0
+ t  - increase parameter 1
+ g  - decrease parameter 1
+ y  - increase parameter 2
+ h  - decrease parameter 2
+ u  - increase parameter 3
+ j  - decrease parameter 3
+
+
+Section 2.4 Visibility
+
+ 1  - toggle visibility of cloud 1
+ 2  - toggle visibility of cloud 2
+ 3  - toggle visibility of cloud 3
+ 4  - toggle visibility of cloud 4
+ 5  - toggle visibility of cloud 5
+ 6  - toggle visibility of cloud 6
+ 7  - toggle visibility of cloud 7
+ 8  - toggle visibility of cloud 8
+ 9  - toggle visibility of cloud 9
+ !  - toggle visibility of path 1
+ @  - toggle visibility of path 2
+ #  - toggle visibility of path 3
+ $  - toggle visibility of path 4
+ %  - toggle visibility of path 5
+ ^  - toggle visibility of path 6
+ &  - toggle visibility of path 7
+ *  - toggle visibility of path 8
+ (  - toggle visibility of path 9
+
+
+Section 2.5 Miscellaneous
+
+ q  - exit
+ESC - exit
+ p  - take screen shot (named scrXXXX.ppm)
+ d  - cycle draw mode
+ r  - reload all input files
+ s  - select triangle under the cursor, printing it's information
+ c  - randomly generate new colors for all data sources
+
