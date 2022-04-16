@@ -97,7 +97,7 @@ target_include_directories(ros_interface PUBLIC
 
 add_dependencies(ros_interface
                         ${catkin_EXPORTED_TARGETS}
-                        rasm_generate_messages_cpp
+                        rasm_viewer_generate_messages_cpp
 )
 
 target_link_libraries(ros_interface LINK_PUBLIC
@@ -122,7 +122,7 @@ target_link_libraries(rasm_viewer_node LINK_PUBLIC
 
 add_dependencies(rasm_viewer_node
                         ${catkin_EXPORTED_TARGETS}
-                        rasm_generate_messages_cpp
+                        rasm_viewer_generate_messages_cpp
 )
 
 ## Specify additional locations of header files
