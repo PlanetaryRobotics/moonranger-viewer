@@ -48,6 +48,12 @@ add_message_files(
   RASM_DRIVE_ARC_MSG.msg
 )
 
+## Generate services in the 'srv' folder
+add_service_files(
+  FILES
+  MeshFile.srv
+)
+
 ## Generate added messages and services with any dependencies listed here
  generate_messages(
    DEPENDENCIES
@@ -81,6 +87,8 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 add_subdirectory(src/core)
 add_subdirectory(src/interfaces)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external/libigl/include/igl)
 
 set(ROS_INTERFACE_SRCS
    ${CMAKE_CURRENT_SOURCE_DIR}/src/interfaces/ros_interface/ros_interface.cc
@@ -121,6 +129,26 @@ target_link_libraries(rasm_viewer_node LINK_PUBLIC
 )
 
 add_dependencies(rasm_viewer_node
+                        ${catkin_EXPORTED_TARGETS}
+                        rasm_generate_messages_cpp
+)
+
+add_executable(mesh_viewer_node 
+            src/nodes/mesh_viewer_node.cpp
+            ${ROS_INTERFACE_SRCS}
+)
+
+target_include_directories(mesh_viewer_node PUBLIC 
+                ${CMAKE_CURRENT_SOURCE_DIR}/src/core/viewer/
+                ${catkin_INCLUDE_DIRS}
+)
+
+target_link_libraries(mesh_viewer_node LINK_PUBLIC
+                rasm_viewer
+                ${catkin_LIBRARIES}
+)
+
+add_dependencies(mesh_viewer_node
                         ${catkin_EXPORTED_TARGETS}
                         rasm_generate_messages_cpp
 )
