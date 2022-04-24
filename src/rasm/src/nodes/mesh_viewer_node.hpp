@@ -12,6 +12,11 @@
  *
  ****************************************************************/
 
+extern "C" {
+#include "central/cfe/fsw/cfe-core/src/inc/cfe.h"
+#include "central/osal/src/os/inc/common_types.h"
+}
+
 #include <ros/ros.h>
 #include "Eigen/Dense"
 

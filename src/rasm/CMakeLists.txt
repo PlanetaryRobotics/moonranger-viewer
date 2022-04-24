@@ -89,6 +89,7 @@ add_subdirectory(src/core)
 add_subdirectory(src/interfaces)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external/libigl/include/igl)
+include_directories(../../../moonranger-rover-flight/)
 
 set(ROS_INTERFACE_SRCS
    ${CMAKE_CURRENT_SOURCE_DIR}/src/interfaces/ros_interface/ros_interface.cc
