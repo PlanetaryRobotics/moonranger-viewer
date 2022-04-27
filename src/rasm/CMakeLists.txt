@@ -89,7 +89,18 @@ add_subdirectory(src/core)
 add_subdirectory(src/interfaces)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external/libigl/include/igl)
-include_directories(../../../moonranger-rover-flight/)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/interfaces/ros_interface/)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/core/commons/)
+include_directories(../../../moonranger-rover-flight/central/cfe/fsw/cfe-core/src/inc)
+include_directories(../../../moonranger-rover-flight/central/osal/src/os/inc/)
+include_directories(../../../moonranger-rover-flight/central/libs/ros_lib/fsw/public_inc)
+include_directories(../../../moonranger-rover-flight/central/apps/sb_transport_lib/fsw/public_inc)
+include_directories(../../../moonranger-rover-flight/central/apps/moonranger_msgs/fsw/public_inc)
+include_directories(../../../moonranger-rover-flight/central/apps/pcl_push/fsw/public_inc)
+include_directories(../../../moonranger-rover-flight/central/apps/ros_app/fsw/platform_inc)
+include_directories(/opt/ros/melodic/lib)
+include_directories(/opt/ros/melodic/include)
+
 
 set(ROS_INTERFACE_SRCS
    ${CMAKE_CURRENT_SOURCE_DIR}/src/interfaces/ros_interface/ros_interface.cc

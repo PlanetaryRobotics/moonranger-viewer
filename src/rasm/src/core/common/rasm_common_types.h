@@ -515,33 +515,33 @@ namespace RASM {
       }
     void copy_from(mesh& m)
       {
-	if(m.m_num_vertices < 3) return;
+        if(m.m_num_vertices < 3) return;
 
-	if(NULL != m_vertices) delete[] m_vertices;
-	if(NULL != m_faces)    delete[] m_faces;
+        if(NULL != m_vertices) delete[] m_vertices;
+        if(NULL != m_faces)    delete[] m_faces;
 
-	m_num_vertices = m.m_num_vertices;
-	m_num_faces    = m.m_num_faces;
+        m_num_vertices = m.m_num_vertices;
+        m_num_faces    = m.m_num_faces;
 
-	m_vertices = new point3d[m_num_vertices];
-	if(m_num_faces > 0) m_faces = new triangle[m_num_faces];
+        m_vertices = new point3d[m_num_vertices];
+        if(m_num_faces > 0) m_faces = new triangle[m_num_faces];
 
-	for(unsigned int i=0; i < m_num_vertices; i++) 
-	  {
-	    for(unsigned int j=0; j < 3; j++) 
-	      {
-		m_vertices[i].coord3d[j] = m.m_vertices[i].coord3d[j];
-	      }
-	  }
+        for(unsigned int i=0; i < m_num_vertices; i++) 
+          {
+            for(unsigned int j=0; j < 3; j++) 
+              {
+                m_vertices[i].coord3d[j] = m.m_vertices[i].coord3d[j];
+              }
+          }
 
-	for(unsigned int i=0; i < m_num_faces; i++) 
-	  {
-	    for(unsigned int j=0; j < 3; j++) 
-	      {
-		m_faces[i].points[j]    = m.m_faces[i].points[j];
-		m_faces[i].neighbors[j] = m.m_faces[i].neighbors[j];
-	      }
-	  }
+        for(unsigned int i=0; i < m_num_faces; i++) 
+          {
+            for(unsigned int j=0; j < 3; j++) 
+              {
+                m_faces[i].points[j]    = m.m_faces[i].points[j];
+                m_faces[i].neighbors[j] = m.m_faces[i].neighbors[j];
+              }
+          }
       }
 
   }; /* end of class mesh */
