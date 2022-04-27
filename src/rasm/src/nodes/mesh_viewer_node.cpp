@@ -85,7 +85,7 @@ void loadRasmMeshData(std::string filename) {
     {
         for(unsigned int j=0; j < 3; j++) 
         {
-            m_vertices[i].coord3d[j] = V[i, j];
+            m_vertices[i].coord3d[j] = V(i, j);
         }
     }
 
@@ -93,7 +93,7 @@ void loadRasmMeshData(std::string filename) {
     {
         for(unsigned int j=0; j < 3; j++) 
         {
-            m_faces[i].points[j] = F[i, j];
+            m_faces[i].points[j] = F(i, j);
             // m_faces[i].neighbors[j] = m.m_faces[i].neighbors[j];
         }
     }
